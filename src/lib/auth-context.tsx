@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { gerarId, hojeIso, somarDias } from "./db"
+import { gerarId, hojeIso, limparTudo, somarDias } from "./db"
 import type { CargoMembro, HarasTenant, PermissaoModulo, PlanoSaaS, StatusAssinatura, Usuario } from "./types"
 
 interface AuthContextType {
@@ -343,6 +343,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       telefone: params.telefone?.trim(),
       ativo: true,
       createdAt: new Date().toISOString(),
+    }
+
+    // Limpa dados de demonstração residuais para o novo criatório iniciar 100% limpo
+    try {
+      await limparTudo()
+    } catch {
+      // ignore
     }
 
     setTodosOsHaras((prev) => [novoHaras, ...prev])

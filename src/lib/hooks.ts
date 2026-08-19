@@ -48,12 +48,7 @@ export function useEquinosComFotos(): EquinosComFotos {
     let cancelado = false
     ;(async () => {
       try {
-        let lista = await getAllEquinos()
-        // Se for o primeiro acesso no celular/computador e o banco estiver vazio, carrega demonstração automaticamente
-        if (lista.length === 0) {
-          await carregarDadosExemplo(false)
-          lista = await getAllEquinos()
-        }
+        const lista = await getAllEquinos()
 
         if (cancelado) return
 
