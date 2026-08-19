@@ -1,0 +1,371 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+body {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --radius-2xl: calc(var(--radius) + 8px);
+    --radius-3xl: calc(var(--radius) + 12px);
+    --radius-4xl: calc(var(--radius) + 16px);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --color-chart-scale-pattern-color: var(--chart-scale-pattern-color);
+    --color-chart-scale-05: var(--chart-scale-05);
+    --color-chart-scale-04: var(--chart-scale-04);
+    --color-chart-scale-03: var(--chart-scale-03);
+    --color-chart-scale-02: var(--chart-scale-02);
+    --color-chart-scale-01: var(--chart-scale-01);
+    --color-chart-label: var(--chart-label);
+    --color-chart-marker-foreground: var(--chart-marker-foreground);
+    --color-chart-marker-border: var(--chart-marker-border);
+    --color-chart-marker-background: var(--chart-marker-background);
+    --color-chart-tooltip-muted: var(--chart-tooltip-muted);
+    --color-chart-tooltip-foreground: var(--chart-tooltip-foreground);
+    --color-chart-tooltip-background: var(--chart-tooltip-background);
+    --color-chart-grid: var(--chart-grid);
+    --color-chart-crosshair: var(--chart-crosshair);
+    --color-chart-foreground-muted: var(--chart-foreground-muted);
+    --color-chart-foreground: var(--chart-foreground);
+    --color-chart-background: var(--chart-background);
+    --color-chart-segment-background: var(--chart-segment-background);
+    --color-chart-segment-line: var(--chart-segment-line);
+    --chart-brush-border: var(--chart-brush-border);
+    --chart-line-secondary: var(--chart-line-secondary);
+    --chart-line-primary: var(--chart-line-primary);
+}
+
+:root {
+    --radius: 0.75rem;
+    /* Fundo quente creme */
+    --background: oklch(0.975 0.008 88);
+    --foreground: oklch(0.24 0.025 160);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.24 0.025 160);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.24 0.025 160);
+    /* Verde profundo — cor principal */
+    --primary: oklch(0.36 0.06 162);
+    --primary-foreground: oklch(0.975 0.008 88);
+    --secondary: oklch(0.945 0.012 88);
+    --secondary-foreground: oklch(0.3 0.03 162);
+    --muted: oklch(0.948 0.01 88);
+    --muted-foreground: oklch(0.5 0.02 160);
+    /* Dourado — destaque */
+    --accent: oklch(0.8 0.09 85);
+    --accent-foreground: oklch(0.3 0.06 70);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.9 0.014 88);
+    --input: oklch(0.88 0.014 88);
+    --ring: oklch(0.36 0.06 162);
+    --chart-1: oklch(0.36 0.06 162);
+    --chart-2: oklch(0.8 0.09 85);
+    --chart-3: oklch(0.55 0.09 45);
+    --chart-4: oklch(0.65 0.1 200);
+    --chart-5: oklch(0.6 0.12 300);
+    /* Tokens dos gráficos Bklit — paleta do haras */
+    --chart-background: oklch(0.985 0.006 88);
+    --chart-foreground: oklch(0.24 0.025 160);
+    --chart-foreground-muted: oklch(0.5 0.02 160);
+    --chart-label: oklch(0.52 0.02 160);
+    --chart-line-primary: oklch(0.78 0.09 85);
+    --chart-line-secondary: oklch(0.36 0.06 162);
+    --chart-crosshair: oklch(0.36 0.06 162 / 0.45);
+    --chart-grid: oklch(0.9 0.014 88);
+    --chart-indicator-color: oklch(0.36 0.06 162);
+    --chart-indicator-secondary-color: oklch(0.78 0.09 85);
+    --chart-marker-background: oklch(1 0 0);
+    --chart-marker-border: oklch(0.9 0.014 88);
+    --chart-marker-foreground: oklch(0.55 0.09 45);
+    --chart-marker-badge-background: oklch(0.78 0.09 85);
+    --chart-marker-badge-foreground: oklch(0.3 0.06 70);
+    --chart-tooltip-background: oklch(1 0 0);
+    --chart-tooltip-foreground: oklch(0.24 0.025 160);
+    --chart-tooltip-muted: oklch(0.5 0.02 160);
+    --chart-brush-border: oklch(0.9 0.014 88);
+    --chart-segment-background: oklch(0.95 0.01 88);
+    --chart-segment-line: oklch(0.78 0.09 85);
+    --chart-scale-01: oklch(0.97 0.01 88);
+    --chart-scale-02: oklch(0.9 0.02 120);
+    --chart-scale-03: oklch(0.75 0.05 140);
+    --chart-scale-04: oklch(0.55 0.07 155);
+    --chart-scale-05: oklch(0.36 0.06 162);
+    --chart-scale-pattern-color: oklch(0.93 0.012 88);
+    /* Sidebar verde escuro em ambos os temas */
+    --sidebar: oklch(0.3 0.045 165);
+    --sidebar-foreground: oklch(0.93 0.02 90);
+    --sidebar-primary: oklch(0.8 0.09 85);
+    --sidebar-primary-foreground: oklch(0.25 0.05 90);
+    --sidebar-accent: oklch(0.38 0.05 165);
+    --sidebar-accent-foreground: oklch(0.97 0.01 90);
+    --sidebar-border: oklch(0.38 0.045 165);
+    --sidebar-ring: oklch(0.8 0.09 85);
+}
+
+.dark {
+    --background: oklch(0.19 0.02 165);
+    --foreground: oklch(0.93 0.015 90);
+    --card: oklch(0.23 0.022 165);
+    --card-foreground: oklch(0.93 0.015 90);
+    --popover: oklch(0.23 0.022 165);
+    --popover-foreground: oklch(0.93 0.015 90);
+    --primary: oklch(0.55 0.075 162);
+    --primary-foreground: oklch(0.97 0.01 90);
+    --secondary: oklch(0.27 0.025 165);
+    --secondary-foreground: oklch(0.93 0.015 90);
+    --muted: oklch(0.27 0.025 165);
+    --muted-foreground: oklch(0.7 0.02 90);
+    --accent: oklch(0.78 0.09 85);
+    --accent-foreground: oklch(0.23 0.05 90);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(0.33 0.03 165);
+    --input: oklch(0.32 0.03 165);
+    --ring: oklch(0.7 0.09 85);
+    --chart-1: oklch(0.6 0.09 162);
+    --chart-2: oklch(0.8 0.09 85);
+    --chart-3: oklch(0.55 0.09 45);
+    --chart-4: oklch(0.65 0.1 200);
+    --chart-5: oklch(0.6 0.12 300);
+    /* Tokens dos gráficos Bklit — paleta do haras */
+    --chart-background: oklch(0.23 0.022 165);
+    --chart-foreground: oklch(0.93 0.015 90);
+    --chart-foreground-muted: oklch(0.7 0.02 90);
+    --chart-label: oklch(0.7 0.02 90);
+    --chart-line-primary: oklch(0.78 0.09 85);
+    --chart-line-secondary: oklch(0.6 0.09 162);
+    --chart-crosshair: oklch(0.78 0.09 85 / 0.5);
+    --chart-grid: oklch(0.33 0.03 165);
+    --chart-indicator-color: oklch(0.93 0.015 90);
+    --chart-indicator-secondary-color: oklch(0.78 0.09 85);
+    --chart-marker-background: oklch(0.27 0.025 165);
+    --chart-marker-border: oklch(0.33 0.03 165);
+    --chart-marker-foreground: oklch(0.78 0.09 85);
+    --chart-marker-badge-background: oklch(0.78 0.09 85);
+    --chart-marker-badge-foreground: oklch(0.23 0.05 90);
+    --chart-tooltip-background: oklch(0.27 0.025 165);
+    --chart-tooltip-foreground: oklch(0.93 0.015 90);
+    --chart-tooltip-muted: oklch(0.7 0.02 90);
+    --chart-brush-border: oklch(0.33 0.03 165);
+    --chart-segment-background: oklch(0.28 0.025 165);
+    --chart-segment-line: oklch(0.78 0.09 85);
+    --chart-scale-01: oklch(0.28 0.03 165);
+    --chart-scale-02: oklch(0.34 0.04 160);
+    --chart-scale-03: oklch(0.42 0.05 160);
+    --chart-scale-04: oklch(0.5 0.06 160);
+    --chart-scale-05: oklch(0.6 0.09 162);
+    --chart-scale-pattern-color: oklch(0.31 0.03 165);
+    --sidebar: oklch(0.26 0.04 165);
+    --sidebar-foreground: oklch(0.93 0.02 90);
+    --sidebar-primary: oklch(0.8 0.09 85);
+    --sidebar-primary-foreground: oklch(0.25 0.05 90);
+    --sidebar-accent: oklch(0.33 0.045 165);
+    --sidebar-accent-foreground: oklch(0.97 0.01 90);
+    --sidebar-border: oklch(0.33 0.04 165);
+    --sidebar-ring: oklch(0.8 0.09 85);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overflow-x: hidden;
+    width: 100%;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  #root {
+    overflow-x: hidden;
+    width: 100%;
+    min-height: 100svh;
+  }
+  input, select, textarea {
+    font-size: 16px; /* Evita zoom forçado automático no Safari iOS */
+  }
+  @media (min-width: 640px) {
+    input, select, textarea {
+      font-size: 0.875rem;
+    }
+  }
+  ::selection {
+    background-color: oklch(0.8 0.09 85 / 0.35);
+  }
+}
+
+/* Fundo líquido: bolhas de luz que derivam lentamente */
+@keyframes drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(3rem, -2rem) scale(1.1);
+  }
+  66% {
+    transform: translate(-2rem, 2.5rem) scale(0.92);
+  }
+}
+
+/* Brilho suave do título em gradiente */
+@keyframes shine {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Transição suave entre páginas */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-in {
+  animation: page-in 0.35s ease both;
+}
+
+/* Dock inferior: esconde a barra de rolagem em todos os navegadores */
+.dock-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.dock-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Barra de rolagem discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.7 0.03 88 / 0.6) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: oklch(0.7 0.03 88 / 0.6);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Estilos especiais de impressão para a Ficha Oficial do Cavalo e Relatório Financeiro (100% isolado em 1 página A4) */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 4mm 6mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Oculta tudo que não for o documento oficial impresso */
+  body * {
+    visibility: hidden !important;
+  }
+
+  /* Exibe APENAS o elemento #print-sheet e seus filhos */
+  #print-sheet,
+  #print-sheet * {
+    visibility: visible !important;
+  }
+
+  #print-sheet {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    page-break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* Utilitário global para ocultar scrollbars completamente em todos os navegadores */
+.no-scrollbar::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
+}
+
+.no-scrollbar,
+* {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}

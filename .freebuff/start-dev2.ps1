@@ -1,0 +1,2 @@
+$p = Start-Process -FilePath 'npm.cmd' -ArgumentList 'run','dev' -WorkingDirectory 'C:\Users\FenyxMoura\Desktop\sistema-haras-v2' -RedirectStandardOutput 'C:\Users\FenyxMoura\Desktop\sistema-haras-v2\.freebuff\preview-823deb52-1caa-4188-9f14-8f496a0f4957.log' -RedirectStandardError 'C:\Users\FenyxMoura\Desktop\sistema-haras-v2\.freebuff\preview-823deb52-1caa-4188-9f14-8f496a0f4957.log.err' -WindowStyle Hidden -PassThru
+Set-Content -Path 'C:\Users\FenyxMoura\Desktop\sistema-haras-v2\.freebuff\dev-pid.txt' -Value $p.Id

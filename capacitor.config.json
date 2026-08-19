@@ -1,0 +1,14 @@
+{
+  "appId": "com.harascloud.app",
+  "appName": "Haras Cloud",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "backgroundColor": "#0f251d"
+  }
+}
