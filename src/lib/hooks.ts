@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { blobParaUrl, getAllEquinos, getFotoPrincipal, temVideo } from "./db"
-import { carregarDadosExemplo } from "./dados-exemplo"
 import type { Equino, FotoEquino, VideoEquino } from "./types"
 
 /** Converte blobs de fotos em URLs de objeto, revogando ao desmontar. */
