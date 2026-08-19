@@ -1,5 +1,5 @@
 import { useRef, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {
   ArrowRight,
   Baby,
@@ -25,7 +25,6 @@ import { HorseIcon } from "@/components/icons/HorseIcon"
 import { HarasLogo } from "@/components/icons/HarasLogo"
 import { Button } from "@/components/ui/button"
 import { PLANOS_DISPONIVEIS, type PlanoSaaS } from "@/lib/types"
-import { useAuth } from "@/lib/auth-context"
 import { cn } from "@/lib/utils"
 
 export function LandingPage() {
@@ -46,17 +45,9 @@ export function LandingPage() {
     scrollTabsRef.current.scrollBy({ left: offset, behavior: "smooth" })
   }
 
-  const { login } = useAuth()
-  const navigate = useNavigate()
-
   // Economia estimada no haras
   const gastoTotalAno = qtdCavalos * custoMensalCabeca * 12
   const economiaEstimadaAno = Math.round(gastoTotalAno * 0.15)
-
-  async function acessarDemonstracao() {
-    await login("dono@harascardoso.com.br", "123")
-    navigate("/app")
-  }
 
   const RECURSOS_SHOWCASE = {
     plantel: {
@@ -366,15 +357,16 @@ export function LandingPage() {
                 <ArrowRight className="ml-2 size-4 sm:size-5" />
               </Button>
             </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={acessarDemonstracao}
-              className="w-full sm:w-auto rounded-2xl border-white/20 bg-white/5 px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold text-white backdrop-blur-md hover:bg-white/15 active:scale-95 transition-all"
-            >
-              <Eye className="mr-2 size-4 sm:size-5 text-[#d9b978]" />
-              Acessar Haras de Exemplo
-            </Button>
+            <Link to="/apresentacao" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto rounded-2xl border-[#d9b978]/40 bg-white/5 px-5 sm:px-7 py-5 sm:py-6 text-sm sm:text-base font-bold text-white backdrop-blur-md hover:bg-white/15 active:scale-95 transition-all"
+              >
+                <Eye className="mr-2 size-4 sm:size-5 text-[#d9b978]" />
+                Ver Demonstração Interativa & Dossiê
+              </Button>
+            </Link>
           </div>
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] sm:text-xs font-medium text-white/60">

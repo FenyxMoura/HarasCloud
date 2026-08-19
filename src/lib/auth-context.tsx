@@ -185,8 +185,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // fallback
       }
     }
-    // Usuário padrão logado inicialmente: Dono do Haras Cardoso
-    return USUARIOS_INICIAIS[1]
+    // Inicialmente sem usuário logado para exigir login real
+    return null
   })
 
   const [haras, setHaras] = useState<HarasTenant | null>(() => {
@@ -198,7 +198,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // fallback
       }
     }
-    return HARAS_PADRAO_CARDOSO
+    return null
   })
 
   const [originalSuperAdmin, setOriginalSuperAdmin] = useState<Usuario | null>(() => {
