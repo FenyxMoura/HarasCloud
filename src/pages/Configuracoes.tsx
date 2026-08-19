@@ -399,35 +399,15 @@ export function Configuracoes() {
           <div className="pt-3 flex flex-wrap items-center gap-3">
             <Button
               type="button"
-              onClick={async () => {
-                toast.success("Iniciando download do aplicativo Android (HarasCloud.apk)...")
-                try {
-                  const res = await fetch("/app-release.apk")
-                  const arrayBuffer = await res.arrayBuffer()
-                  const blob = new Blob([arrayBuffer], { type: "application/vnd.android.package-archive" })
-                  const url = window.URL.createObjectURL(blob)
-                  const a = document.createElement("a")
-                  a.href = url
-                  a.download = "HarasCloud.apk"
-                  document.body.appendChild(a)
-                  a.click()
-                  setTimeout(() => {
-                    window.URL.revokeObjectURL(url)
-                    document.body.removeChild(a)
-                  }, 1000)
-                } catch {
-                  const a = document.createElement("a")
-                  a.href = "/app-release.apk"
-                  a.download = "HarasCloud.apk"
-                  document.body.appendChild(a)
-                  a.click()
-                  document.body.removeChild(a)
-                }
+              disabled
+              onClick={() => {
+                toast.info("Download do APK desativado temporariamente. O aplicativo estará disponível diretamente na Google Play Store.")
               }}
-              className="rounded-2xl bg-[#d9b978] text-[#143129] font-bold text-xs hover:bg-[#e8c88a] shadow-lg shadow-[#d9b978]/20"
+              className="rounded-2xl bg-stone-700/50 text-stone-400 font-bold text-xs cursor-not-allowed opacity-60 border border-stone-600/30"
+              title="Download desativado temporariamente"
             >
               <Smartphone className="size-4 mr-1.5" />
-              📥 Baixar Aplicativo Android (.APK)
+              📥 Baixar APK Android (Desativado)
             </Button>
 
             <Button
