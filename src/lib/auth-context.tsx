@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { gerarId, hojeIso, limparTudo, resetDbConnections, somarDias } from "./db"
+import { gerarId, hojeIso, resetDbConnections, somarDias } from "./db"
 import { carregarDadosExemplo, carregarDadosModulos } from "./dados-exemplo"
 import type { CargoMembro, HarasTenant, PermissaoModulo, PlanoSaaS, StatusAssinatura, Usuario } from "./types"
 
