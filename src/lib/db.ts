@@ -98,11 +98,34 @@ export const TODAS_STORES = [
 
 export type NomeStore = (typeof TODAS_STORES)[number]
 
-let dbPromise: Promise<IDBPDatabase<HarasDB>> | null = null
+const STORAGE_CURRENT_HARAS = "haras_cloud_auth_haras_v1"
+
+function getTenantIdAtual(): string {
+  if (typeof window === "undefined") return "default"
+  try {
+    const raw = localStorage.getItem(STORAGE_CURRENT_HARAS)
+    if (raw) {
+      const parsed = JSON.parse(raw)
+      if (parsed?.id) return parsed.id
+    }
+  } catch {
+    // fallback
+  }
+  return "default"
+}
+
+let dbPromises: Record<string, Promise<IDBPDatabase<HarasDB>>> = {}
+
+export function resetDbConnections() {
+  dbPromises = {}
+}
 
 export function getDb() {
-  if (!dbPromise) {
-    dbPromise = openDB<HarasDB>("haras-gestao", 4, {
+  const tenantId = getTenantIdAtual()
+  const dbName = `haras_gestao_${tenantId}`
+
+  if (!dbPromises[dbName]) {
+    dbPromises[dbName] = openDB<HarasDB>(dbName, 4, {
       upgrade(db) {
         if (!db.objectStoreNames.contains("equinos")) {
           db.createObjectStore("equinos", { keyPath: "id" })
@@ -153,7 +176,7 @@ export function getDb() {
       },
     })
   }
-  return dbPromise
+  return dbPromises[dbName]
 }
 
 

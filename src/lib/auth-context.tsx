@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react"
-import { gerarId, hojeIso, limparTudo, somarDias } from "./db"
+import { gerarId, hojeIso, limparTudo, resetDbConnections, somarDias } from "./db"
+import { carregarDadosExemplo, carregarDadosModulos } from "./dados-exemplo"
 import type { CargoMembro, HarasTenant, PermissaoModulo, PlanoSaaS, StatusAssinatura, Usuario } from "./types"
 
 interface AuthContextType {
@@ -287,6 +288,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setUsuario(userMatch)
     setHaras(harasMatch)
+    resetDbConnections()
     setOriginalSuperAdmin(null)
     setCarregandoAuth(false)
     return { success: true }
@@ -345,17 +347,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       createdAt: new Date().toISOString(),
     }
 
-    // Limpa dados de demonstração residuais para o novo criatório iniciar 100% limpo
-    try {
-      await limparTudo()
-    } catch {
-      // ignore
-    }
-
     setTodosOsHaras((prev) => [novoHaras, ...prev])
     setTodosOsUsuarios((prev) => [novoUsuarioDono, ...prev])
     setHaras(novoHaras)
     setUsuario(novoUsuarioDono)
+    resetDbConnections()
     setOriginalSuperAdmin(null)
     setCarregandoAuth(false)
 
@@ -366,6 +362,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   function logout() {
     setUsuario(null)
     setHaras(null)
+    resetDbConnections()
     setOriginalSuperAdmin(null)
   }
 
@@ -531,6 +528,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     setUsuario(usuarioVisitante)
     setHaras(HARAS_PADRAO_CARDOSO)
+    resetDbConnections()
+    try {
+      await carregarDadosExemplo(false)
+      await carregarDadosModulos()
+    } catch {
+      // ignore
+    }
     setOriginalSuperAdmin(null)
     setCarregandoAuth(false)
     return { success: true }
